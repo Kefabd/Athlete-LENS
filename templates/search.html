@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trouver Mes Photos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  <style>
+    body {
+      color: #000000;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    h1{
+      font-family: "Playfair Display";
+      font-weight: 700em;
+    }
+
+    .Container {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero {
+      background-image: url("{{ url_for('static', filename='search_back.jpg') }}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: bottom center;
+      height: 100vh;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .results {
+      background-color: rgb(0, 0, 0);
+      margin: 0;
+    }
+
+    .carousel-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 100px;
+    }
+
+    .image {
+      position: relative;
+      display: inline-block;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 300px;
+      border-radius: 15px;
+      
+    }
+
+    .download-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: rgba(255, 255, 255, 0.8);
+      z-index: 9;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 40px;
+      background-color: rgb(0, 0, 0);
+      width: 35px;
+    }
+  
+    .form-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 70px;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container h1 {
+      font-size: 46px;
+      margin: -20px 20px 20px;
+      color: #fff;
+    }
+
+    .form-container input,
+    .form-container button {
+      width: 50%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .form-container input {
+      border: 1px solid #ccc;
+    }
+
+    .form-container button {
+      border: none;
+      font-weight: bold;
+      background-color: #f8c351;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #e0a435;
+    }
+  </style>
+</head>
+
+<body>
+  {% include 'partials/header.html' %}
+
+  <div class="hero">
+    <div class="Container">
+      <form id="searchForm" class="form-container" method="post">
+        <h1 style="font-family: Playfair Display;">Enter Bib Number</h1>
+        <p>When entering the bib number, click OK to view the pictures that contain the detected bib number</p>
+        <input type="text" id="dossard_number" name="dossard_number" placeholder="Type Bib Number" />
+        <button type="submit">Ok</button>
+      </form>
+    </div>
+  </div>
+
+
+
+  {% if image_files %}
+  <div id="results-section" class="results p-4">
+
+    <h1 style="color: #fff; text-align: center;">Search Results</h1>
+    <div class="row d-flex justify-content-center align-items-center text-center w-100 m-0" style="border-radius: 7px; border: 1px solid #ccc;">
+      {% for image_file in image_files %}
+        <!-- Pour chaque fichier image dans la liste image_files -->
+        <div class="col-md-3 d-flex justify-content-center my-3" >
+            <!-- Crée une colonne avec un espacement autour -->
+            <div class="image">
+                <!-- Conteneur pour l'image et l'icône de téléchargement -->
+                <img src="{{ url_for('static', filename='uploads/' + image_file) }}" class="card-img-top" alt="{{ image_file }}">
+                <!-- Affiche l'image -->
+                <a href="{{ url_for('static', filename='uploads/' + image_file) }}" download class="download-icon">
+                    <!-- Lien pour télécharger l'image -->
+                    <i class="bi bi-download"></i>
+                    <!-- Icône de téléchargement -->
+                </a>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+
+    <script>
+      console.log(scroll)
+      document.addEventListener("DOMContentLoaded", function () {
+        
+        document.getElementById("results-section").scrollIntoView({ behavior: 'smooth' });
+        
+      });
+    </script>
+
+    {% elif no_results %}
+    <script>
+      Swal.fire({
+        icon: "error",
+        title: "No picture found",
+        text: "Please try another time",
+      });
+    </script>
+  </div>
+
+  {% endif %}
+ 
+</body>
+
+</html>

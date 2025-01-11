@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Shade Background</title>
+  <style>
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+    }
+    .hero {
+      background-image: url("{{ url_for('static', filename='running-a-race2.jpg') }}");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: bottom center;
+      height: 100vh;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 46px;
+      margin: -20px 0 20px;
+    }
+
+    .container p {
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    .container a {
+      color: hsl(0, 2%, 8%);
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: rgb(255, 255, 255);
+    }
+
+    .container a:hover {
+      background-color: rgb(224, 221, 217);
+    }
+  </style>
+</head>
+
+<body style="
+      font-family: 'Open Sans', sans-serif;
+      color: #000000;
+      padding-bottom: 50px;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    ">
+  {% include 'partials/header.html' %}
+
+  <div class="hero">
+    <div class="container">
+      <h1 style="margin-bottom: 0;">Welcome To <img src="{{url_for('static', filename="athlete_lens.png")}}" alt="" style="position: relative; bottom: 25px;"></h1>
+      <p>Would you like to upload photos or download yours?</p>
+      <a href="/upload">Upload Pictures</a>
+      <a href="/search">Search Pictures</a>
+    </div>
+  </div>
+
+</body>
+
+</html>
