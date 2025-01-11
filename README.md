@@ -13,24 +13,24 @@ After detecting the bib regions in the images, an OCR model was applied to extra
 ### Roboflow:
 Roboflow was used to annotate and prepare the training data for YOLOv8. It provides a user-friendly interface for annotating images, enabling efficient labeling of bib numbers within marathon pictures. The annotated dataset was then used to train the YOLOv8 model, improving detection accuracy for bib numbers across various images.
 
-##Functionality:
+## Functionality:
 
-###Photographer Uploads:
+### Photographer Uploads:
 Photographers can upload marathon pictures to the platform, where the system automatically processes the images to detect and extract the bib numbers using YOLOv8 and OCR.
 
-###User Search:
+### User Search:
 Participants or users can search for their own pictures by entering their bib number. The system will then retrieve the relevant images by matching the detected bib numbers with the search query.
 
-##Project Workflow:
+## Project Workflow:
 
-###Upload Pictures:
+### Upload Pictures:
 Uploaded images are preprocessed for optimal detection, including resizing, contrast enhancement, and noise reduction.
 
-###Bib Detection with YOLOv8:
+### Bib Detection with YOLOv8:
 YOLOv8 detects the bib regions and marks them with bounding boxes, preparing the image for text extraction.
 
-###OCR for Text Extraction:
+### OCR for Text Extraction:
 The OCR technology extracts the bib numbers from the detected regions, converting the image data into readable text.
 
-###User Interaction:
+### User Interaction:
 Users can enter their bib numbers to find their images. The system matches the entered bib number with the detected ones, enabling a smooth search process.
