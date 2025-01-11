@@ -10,7 +10,7 @@ YOLOv8 is a powerful, real-time object detection model that is particularly well
 ### Optical Character Recognition (OCR):
 After detecting the bib regions in the images, an OCR model was applied to extract the text (bib number) from the cropped areas. This step ensures that the bib number is read accurately, even in challenging conditions such as low resolution, blurry images, or different lighting scenarios.
 
-###### Roboflow:
+### Roboflow:
 Roboflow was used to annotate and prepare the training data for YOLOv8. It provides a user-friendly interface for annotating images, enabling efficient labeling of bib numbers within marathon pictures. The annotated dataset was then used to train the YOLOv8 model, improving detection accuracy for bib numbers across various images.
 
 ##Functionality:
